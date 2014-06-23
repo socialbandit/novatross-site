@@ -1,4 +1,4 @@
 novatross-site
 ==============
 
-site content for novatross.com
+site content and for novatross.com
