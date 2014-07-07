@@ -23,29 +23,31 @@
           <div class="col-sm-8">
             <h3 class="headline first-child"><span style="color:#006091;">Contact US</span></h3>
             <p>Drop us an email or give us a shout. We're here to help you with all your questions and development needs.</p>
-            <form role="form">
+            <?php echo $this->session->flashdata('msg_email_sent');?>
+            <form role="form" action="<?php echo site_url('contact_process')?>" method="post">
               <div class="form-group">
                 <label for="email"><span style="color:#006091;">Your email address</span></label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email">
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" value="<?php echo set_value('email'); ?>">
+                <?php echo form_error('email'); ?>
               </div>
               <div class="form-group">
                 <label for="name"><span style="color:#006091;">Your name</span></label>
-                <input type="text" class="form-control" id="name" placeholder="Enter name">
+                <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" value="<?php echo set_value('name'); ?>">
+                       <?php echo form_error('name'); ?>
               </div>
               <div class="form-group">
                 <label for="message"><span style="color:#006091;">Your message</span></label>
-                <textarea class="form-control" rows="3" id="message" placeholder="Enter message"></textarea>
+                <textarea class="form-control" rows="3" id="message" placeholder="Enter message" name="message"><?php echo set_value('message'); ?></textarea>
+                <?php echo form_error('message'); ?>
               </div>
               <div class="form-group">
-                <label for="exampleInputFile"><span style="color:#006091;">Upload file</span></label>
-                <input type="file" id="exampleInputFile">
-                <p class="help-block">Attach your file here.</p>
+                <?php echo $recaptcha_html;
+                if($this->input->post() && !$this->recaptcha->getIsValid()){
+                  echo 'incorrect captcha';
+                }
+                ?>
               </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox"> Send a copy to myself
-                </label>
-              </div>
+                
               <button type="submit" class="btn btn-lg btn-red">Send Request</button>
             </form>
           </div>
