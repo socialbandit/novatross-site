@@ -42,44 +42,7 @@ class Contact extends CI_Controller {
 
 	public function index() {
 
-		$this->data['show_spam_protection'] = $this->spam_protection; // used in the view
-		$this->data['spam_question'] = $this->spam_question; // used in the view
-
-		$this->load->library('form_validation');
-		$this->load->helper('url');
-		$this->subjectLine = "Contact form response from " . $_SERVER['HTTP_HOST'];
-		$this->form_validation->set_rules('name', 'Your name', 'trim|required');
-		$this->form_validation->set_rules('email', 'Your Email', 'trim|required|valid_email');
-		$this->form_validation->set_rules('message', 'Message', 'trim|required|xss_clean');
-
-		if ($this->spam_protection) {
-			$this->form_validation->set_rules('spam_protection', 'Spam Protection', 'callback_spam_protection');
-		}
-
-		if($this->form_validation->run() == FALSE) {
-			// show the form
-			
-			if ($this->headerView) { $this->load->view($this->headerView,$this->data); }
-			$this->load->view($this->formView,$this->data);
-			if ($this->footerView) { $this->load->view($this->footerView,$this->data); }
-
-		} else {
-			// success! email it, assume it sent, then show contact success view.
-			
-			$this->load->library('email');
-			$this->email->from($this->input->post('email'), $this->input->post('name'));
-			$this->email->to($this->sendEmailTo);
-			$this->email->subject($this->subjectLine);
-			$this->email->message($this->input->post('message'));
-			$this->email->send();
-
-			// load the view
-			// if $this->headerView/footerView is set it will load their views
-			if ($this->headerView) { $this->load->view($this->headerView,$this->data); }
-			$this->load->view($this->successView,$this->data);
-			if ($this->footerView) { $this->load->view($this->footerView,$this->data); }
-
-		}
+		
 	}
 
 	// the callback for checking the spam protection. Only one question/one answer, very basic.
