@@ -4,7 +4,45 @@
     <meta charset="utf-8">
     <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+	<?php
+	
+	$keywords = "";
+	$description = "";
+	if($this->router->fetch_method()=="index"){
+		$keywords = "Index, CSS, XML, XHTML, JavaScript";
+		$description = "lorem ipsum dolar sit amet"; 
+	}
+	else if($this->router->fetch_method()=="about"){
+		$keywords = "About, CSS, XML, XHTML, JavaScript";
+		$description = "lorem ipsum dolar sit amet"; 
+	}
+	else if($this->router->fetch_method()=="document_management"){
+		$keywords = "document_management, CSS, XML, XHTML, JavaScript";
+		$description = "document_management ipsum dolar sit amet"; 
+	}
+	else if($this->router->fetch_method()=="erp"){
+		$keywords = "erp, CSS, XML, XHTML, JavaScript";
+		$description = "erp ipsum dolar sit amet"; 
+	}
+	else if($this->router->fetch_method()=="web_app_development"){
+		$keywords = "erp, CSS, XML, XHTML, JavaScript";
+		$description = "erp ipsum dolar sit amet"; 
+	}
+	else if($this->router->fetch_method()=="medical_records_scanning"){
+		$keywords = "medical_records_scanning, CSS, XML, XHTML, JavaScript";
+		$description = "medical_records_scanning ipsum dolar sit amet"; 
+	}
+	else if($this->router->fetch_method()=="awv"){
+		$keywords = "awv, CSS, XML, XHTML, JavaScript";
+		$description = "awv ipsum dolar sit amet"; 
+	}
+	else if($this->router->fetch_method()=="contact"){
+		$keywords = "contact, CSS, XML, XHTML, JavaScript";
+		$description = "contact ipsum dolar sit amet"; 
+	}
+	?>
+    <meta name="description" content="<?php echo $description; ?>">
+	<meta name="keywords" content="<?php echo $keywords; ?>">
     <meta name="author" content="">
     <link rel="shortcut icon" href="ico2/favicon.ico">
 
@@ -43,6 +81,7 @@
   </head>
 
   <body>
+  
 
     <!-- Navigation -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
